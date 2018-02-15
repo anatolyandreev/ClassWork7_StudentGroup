@@ -6,11 +6,10 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import by.htp.Group.model.*;
 
-
 public class MainApp {
 
 	public static void main(String[] args) {
-		
+
 		Student st1 = new Student(18, 2010);
 		Student st2 = new Student(19, 2010);
 		Student st3 = new Student(18, 2010);
@@ -28,7 +27,6 @@ public class MainApp {
 		Student st15 = new Student(18, 2005);
 		Student st16 = new Student(18, 2003);
 
-
 		Group group = new Group();
 
 		if (group.getStudents() == null) {
@@ -36,7 +34,7 @@ public class MainApp {
 		} else {
 			System.out.println("not null");
 		}
-		
+
 		group.addStudent(st1);
 		group.addStudent(st2);
 		group.addStudent(st3);
@@ -49,20 +47,26 @@ public class MainApp {
 		group.addStudent(st10);
 		group.addStudent(st11);
 		group.addStudent(st12);
-//		group.addStudent(st13);
-//		group.addStudent(st14);
-//		group.addStudent(st15);
-//		group.addStudent(st16);
-		
-		
-		System.out.println("Количество студентов в группе = " + group.getStudents().length);
-		
-		System.out.println("Средний возраст студентов в группе = " + group.getMedium());
-		
+		// group.addStudent(st13);
+		// group.addStudent(st14);
+		// group.addStudent(st15);
+		// group.addStudent(st16);
+
+		System.out.println("Р’ РіСЂСѓРїРїРµ СѓС‡РёС‚СЃСЏ = " + group.getStudents().length);
+
+		System.out.println("РЎСЂРµРґРЅРёР№ РІРѕР·СЂР°СЃС‚ СЃС‚СѓРґРµРЅС‚РѕРІ РІ РіСЂСѓРїРїРµ = " + group.getMedium());
+
 		group.getStudentsNumberByStartDate();
-				
-		System.out.println("Максимальное число студентов поступило в " + group.getYearMaxStudents() + " году, их количество равно " + group.getNumberStudentsMaxYear());
-		
+
+		System.out.println("Р‘РѕР»СЊС€Рµ РІСЃРµРіРѕ СЃС‚СѓРґРµРЅС‚РѕРІ РїРѕСЃС‚СѓРїРёР»Рѕ РІ " + group.getYearMaxStudents()
+				+ " РіРѕРґСѓ, РёС… РєРѕР»РёС‡РµСЃС‚РІРѕ СЂР°РІРЅРѕ " + group.getNumberStudentsMaxYear());
+
+		group.selectionSort();
+		System.out.println("СЃРѕСЂС‚РёСЂРѕРІРєР° РІС‹Р±РѕСЂРѕРј " + Arrays.toString(group.getStudentsAge()));
+
+		// group.insertionSort();
+		// System.out.println("СЃРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєР°РјРё " +
+		// Arrays.toString(group.getStudentsAge()));
 	}
 
 }

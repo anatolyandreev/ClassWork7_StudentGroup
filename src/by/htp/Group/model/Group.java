@@ -15,7 +15,23 @@ public class Group {
 		return this.students;
 	}
 
-	// эта функция проверяет достаточно ли студентов в группе (больше или меньше 5ти)
+	// этот метод возвращает массив из возрастов всех студентов
+	public int[] getStudentsAge() {
+		int[] age = new int[this.getStudents().length];
+		for (int i = 0; i < this.getStudents().length; i++) {
+			age[i] = this.getStudents()[i].getAge();
+		}
+		return age;
+	}
+
+	public void setStudentAge(int[] age) {
+		for (int i = 0; i < this.getStudents().length; i++) {
+			this.getStudentsAge()[i] = age[i];
+		}
+	}
+
+	// эта функция проверяет достаточно ли студентов в группе (больше или меньше
+	// 5ти)
 	// чтобы начать обучение
 	public boolean groupStatus(Student[] students) {
 		boolean status = false;
@@ -38,7 +54,8 @@ public class Group {
 	// изначально создается "пустая" групп на 5 мест
 	// присутствует warning на то, что необходимо добавить студента в группу
 	// если количество занятых мест в группе меньше 5
-	// присутствует проверка на чтобы количество стунентов в группе не превышало 15 человек
+	// присутствует проверка на чтобы количество стунентов в группе не превышало
+	// 15 человек
 	// таким образом 16-й студент в группу добавлен не будет
 	public void addStudent(Student student) {
 		if (this.students != null) {
@@ -70,7 +87,7 @@ public class Group {
 			studentCounter++;
 		}
 	}
-	
+
 	// эта функция возвращает средний возраст студентов в группе
 	public double getMedium() {
 		double medium = 0;
@@ -140,4 +157,68 @@ public class Group {
 		}
 		return year;
 	}
+
+	// сортировка списка студентов по возрасту в взрастающем порядке
+	public void bubbleSortAsc() {
+		for (int i = this.getStudents().length - 1; i > 0; i--) {
+			for (int j = 0; j < i; j++) {
+				if (this.getStudents()[j].getAge() > this.getStudents()[j + 1].getAge()) {
+					Student temp = this.getStudents()[j + 1];
+					this.getStudents()[j + 1] = this.getStudents()[j];
+					this.getStudents()[j] = temp;
+				}
+			}
+		}
+	}
+
+	// сортировка вставками в взрастающем порядке
+	public void insertionSort() {
+		int j, tempInt;
+		Student temp;
+		for (int i = 0; i < this.getStudents().length - 1; i++) {
+			if (this.getStudentsAge()[i] > getStudentsAge()[i + 1]) {
+				temp = this.getStudents()[i + 1];
+				tempInt = this.getStudentsAge()[i + 1];
+				this.getStudents()[i + 1] = this.getStudents()[i];
+				j = i;
+				while (j > 0 && tempInt < this.getStudentsAge()[j - 1]) {
+					this.getStudents()[j] = this.getStudents()[j - 1];
+					j--;
+				}
+			}
+		}
+	}
+
+	// TODO сортировка выбором не работает :(
+	public void selectionSort() {
+		int min, imin;
+		//int temp;
+		Student temp;
+		int[] tempAge = new int[this.getStudents().length];
+		for (int i = 0; i < this.getStudents().length; i++) {
+			imin = i;
+			min = this.getStudents()[i].getAge();
+			for (int j = i + 1; j < this.getStudents().length; j++) {
+				if (this.getStudents()[j].getAge() < min); { // min or this.getStudentsAge()[imin]
+				min = this.getStudents()[j].getAge();
+				imin = j;
+			}
+		}
+//			// Swap the values
+//			if (i != imin) {
+//				temp = this.getStudents()[i].getAge(); // [imin]
+//				tempAge[i] = this.getStudents()[imin].getAge(); // this.getStudents()[imin] = this.getStudents()[index];
+//				tempAge[imin] = temp;
+//			}
+//			this.setStudentAge(tempAge);
+//		}
+		 //Swap the values
+		 if (i != imin) {
+		 temp = this.getStudents()[i]; // [imin]
+		 this.getStudents()[i] = this.getStudents()[imin]; //
+		 this.getStudents()[imin] = this.getStudents()[i];
+		 this.getStudents()[imin] = temp;
+		 }
+	}
+}
 }
