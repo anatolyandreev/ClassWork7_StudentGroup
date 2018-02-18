@@ -189,36 +189,70 @@ public class Group {
 		}
 	}
 
-	// TODO сортировка выбором не работает :(
+	// сортировка выбором в возрастающем порядке
 	public void selectionSort() {
 		int min, imin;
-		//int temp;
 		Student temp;
-		int[] tempAge = new int[this.getStudents().length];
-		for (int i = 0; i < this.getStudents().length; i++) {
+		//int[] tempAge = new int[this.students.length];
+		for (int i = 0; i < this.students.length; i++) {
 			imin = i;
 			min = this.getStudents()[i].getAge();
-			for (int j = i + 1; j < this.getStudents().length; j++) {
-				if (this.getStudents()[j].getAge() < min); { // min or this.getStudentsAge()[imin]
-				min = this.getStudents()[j].getAge();
-				imin = j;
+			for (int j = i + 1; j < this.students.length; j++) {
+				if (this.students[j].getAge() < min) { // min or this.getStudentsAge()[imin]
+					min = this.students[j].getAge();
+					imin = j;
+				}
+			}
+			// Swap the values
+			if (i != imin && this.students[i] != null) {
+				temp = this.getStudents()[i]; // [imin]
+				this.students[i] = this.students[imin]; //
+				this.students[imin] = temp;
 			}
 		}
-//			// Swap the values
-//			if (i != imin) {
-//				temp = this.getStudents()[i].getAge(); // [imin]
-//				tempAge[i] = this.getStudents()[imin].getAge(); // this.getStudents()[imin] = this.getStudents()[index];
-//				tempAge[imin] = temp;
-//			}
-//			this.setStudentAge(tempAge);
-//		}
-		 //Swap the values
-		 if (i != imin) {
-		 temp = this.getStudents()[i]; // [imin]
-		 this.getStudents()[i] = this.getStudents()[imin]; //
-		 this.getStudents()[imin] = this.getStudents()[i];
-		 this.getStudents()[imin] = temp;
-		 }
 	}
-}
+	
+	// быстрая сортировка
+	public void quickSort(int low, int high) {
+//		int low = 0;
+//		int high = students.length - 1;
+		
+		
+        if (this.getStudentsAge().length == 0)
+            return;//завершить выполнение если длина массива равна 0
+ 
+        if (low >= high)
+            return;//завершить выполнение если уже нечего делить
+ 
+        // выбрать опорный элемент
+        int middle = low + (high - low) / 2;
+        int opora = this.getStudentsAge()[middle];
+ 
+        // разделить на подмассивы, который больше и меньше опорного элемента
+        int i = low, j = high;
+        while (i <= j) {
+            while (this.getStudentsAge()[i] < opora) {
+                i++;
+            }
+ 
+            while (this.getStudentsAge()[j] > opora) {
+                j--;
+            }
+ 
+            if (i <= j) {//меняем местами
+                Student temp = this.getStudents()[i];
+                this.getStudents()[i] = this.getStudents()[j];
+                this.getStudents()[j] = temp;
+                i++;
+                j--;
+            }
+        }
+ 
+        // вызов рекурсии для сортировки левой и правой части
+        if (low < j)
+            this.quickSort(low, j);
+ 
+        if (high > i)
+            this.quickSort(i, high);
+    }
 }

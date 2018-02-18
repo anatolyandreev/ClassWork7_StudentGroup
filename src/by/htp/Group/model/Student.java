@@ -1,7 +1,7 @@
 package by.htp.Group.model;
 
 public class Student {
-
+	
 	private int age;
 	private int startYear;
 

@@ -10,7 +10,7 @@ public class MainApp {
 
 	public static void main(String[] args) {
 
-		Student st1 = new Student(18, 2010);
+		Student st1 = new Student(17, 2010);
 		Student st2 = new Student(19, 2010);
 		Student st3 = new Student(18, 2010);
 		Student st4 = new Student(20, 2013);
@@ -61,12 +61,8 @@ public class MainApp {
 		System.out.println("Больше всего студентов поступило в " + group.getYearMaxStudents()
 				+ " году, их количество равно " + group.getNumberStudentsMaxYear());
 
-		group.selectionSort();
-		System.out.println("сортировка выбором " + Arrays.toString(group.getStudentsAge()));
-
-		// group.insertionSort();
-		// System.out.println("сортировка вставками " +
-		// Arrays.toString(group.getStudentsAge()));
+		group.quickSort(0, group.getStudentsAge().length-1);
+		System.out.println("быстрая сортировка " + Arrays.toString(group.getStudentsAge()));
 	}
 
 }
